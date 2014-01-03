@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NicCage.iOS", "NicCage.iOS\NicCage.iOS.csproj", "{71312266-48DC-4B15-9EA6-A0B49707D0B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NicCage.Android", "NicCage.Android\NicCage.Android.csproj", "{08FD01C1-C286-4FC8-B433-94C90DC731AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08FD01C1-C286-4FC8-B433-94C90DC731AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08FD01C1-C286-4FC8-B433-94C90DC731AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08FD01C1-C286-4FC8-B433-94C90DC731AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08FD01C1-C286-4FC8-B433-94C90DC731AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71312266-48DC-4B15-9EA6-A0B49707D0B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71312266-48DC-4B15-9EA6-A0B49707D0B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71312266-48DC-4B15-9EA6-A0B49707D0B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71312266-48DC-4B15-9EA6-A0B49707D0B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = NicCage.iOS\NicCage.iOS.csproj
+	EndGlobalSection
+EndGlobal
