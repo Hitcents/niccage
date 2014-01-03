@@ -108,5 +108,6 @@ Backup*/
 UpgradeLog*.XML
 
 #Xamarin or Mac stuff
+Resource.designer.cs
 *.userprefs
 .DS_Store
