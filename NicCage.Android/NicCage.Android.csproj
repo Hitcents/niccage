@@ -57,5 +57,8 @@
       <Link>Reflection\DynamicExtensions.cs</Link>
     </Compile>
     <Compile Include="BindingExtensions.cs" />
+    <Compile Include="..\Common\ServiceContainer.cs">
+      <Link>ServiceContainer.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>
