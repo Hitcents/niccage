@@ -10,7 +10,6 @@ namespace NicCage.Tests
 	{
 		private TestController _controller;
 		private TestViewModel _viewModel;
-		private PropertyObserver _observer;
 		private const int Times = 5000;
 
 		[SetUp]
@@ -22,7 +21,7 @@ namespace NicCage.Tests
 			_controller = storyboard.InstantiateViewController("TestController") as TestController;
 			_controller.View.ToString(); //Load view
 
-			_observer = _controller.Bind(_viewModel);
+			_controller.Bind(_viewModel);
 		}
 
 		[Test]

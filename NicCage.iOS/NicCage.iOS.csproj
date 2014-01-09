@@ -41,9 +41,6 @@
     <Compile Include="..\Common\PropertyChangedBase.cs">
       <Link>PropertyChangedBase.cs</Link>
     </Compile>
-    <Compile Include="..\Common\PropertyObserver.cs">
-      <Link>PropertyObserver.cs</Link>
-    </Compile>
     <Compile Include="..\Common\Reflection\DynamicExtensions.cs">
       <Link>Reflection\DynamicExtensions.cs</Link>
     </Compile>
@@ -51,8 +48,12 @@
     <Compile Include="..\Common\ServiceContainer.cs">
       <Link>ServiceContainer.cs</Link>
     </Compile>
+    <Compile Include="..\Bind\src\Bind.cs">
+      <Link>Bind\Bind.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reflection\" />
+    <Folder Include="Bind\" />
   </ItemGroup>
 </Project>

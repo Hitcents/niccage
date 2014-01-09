@@ -12,7 +12,6 @@ namespace NicCage.Tests
 	{
 		private TestViewModel _viewModel;
 		private View _view;
-		private PropertyObserver _observer;
 		private const int Times = 5000;
 
 		[SetUp]
@@ -25,7 +24,7 @@ namespace NicCage.Tests
 			_viewModel = new TestViewModel();
 
 			//Look we can bind unit tests!
-			_observer = this.Bind(_viewModel, _view);
+			this.Bind(_viewModel, _view);
 		}
 
 		[Test]

@@ -4,14 +4,14 @@ using System.Reflection;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using NicCage.Reflection;
+using Praeclarum.Bind;
 
 namespace NicCage
 {
 	public static class BindingExtensions
 	{
-		public static PropertyObserver Bind(this object bindable, INotifyPropertyChanged viewModel)
+		public static void Bind(this object bindable, INotifyPropertyChanged viewModel)
 		{
-			var observer = new PropertyObserver(viewModel);
 			var properties = bindable.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic);
 			foreach (var property in properties)
 			{
@@ -26,7 +26,7 @@ namespace NicCage
 					var label = view as UILabel;
 					if (label != null)
 					{
-						observer.Add<string>(property.Name, text => label.Text = text ?? string.Empty);
+						Binding.Create(() => label.Text == viewModel.GetProperty(property.Name));
 						continue;
 					}
 
@@ -34,9 +34,9 @@ namespace NicCage
 					var button = view as UIButton;
 					if (button != null)
 					{
-						observer.Add<bool>("Can" + property.Name, value => button.Enabled = value);
+						Binding.Create(() => button.Enabled == (bool)viewModel.GetProperty("Can" + property.Name));
 
-						button.TouchUpInside += (sender, e) => observer.InvokeMethod(property.Name);
+						button.TouchUpInside += (sender, e) => viewModel.Invoke(property.Name);
 
 						continue;
 					}
@@ -45,13 +45,7 @@ namespace NicCage
 					var textField = view as UITextField;
 					if (textField != null)
 					{
-						observer.Add<string>(property.Name, text => textField.Text = text ?? string.Empty);
-
-						NSNotificationCenter.DefaultCenter.AddObserver(UITextField.TextFieldTextDidChangeNotification, n =>
-						{
-							viewModel.SetProperty(property.Name, textField.Text);
-
-						}, textField);
+						Binding.Create(() => textField.Text == viewModel.GetProperty(property.Name));
 
 						continue;
 					}
@@ -59,8 +53,6 @@ namespace NicCage
 					//No conventions hit
 				}
 			}
-
-			return observer;
 		}
 	}
 }

@@ -1,0 +1,3 @@
+[submodule "Bind"]
+	path = Bind
+	url = https://github.com/Hitcents/Bind.git

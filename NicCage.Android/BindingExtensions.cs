@@ -4,15 +4,15 @@ using System.ComponentModel;
 using Android.Views;
 using Android.Widget;
 using NicCage.Reflection;
+using Praeclarum.Bind;
 
 namespace NicCage
 {
 	public static class BindingExtensions
 	{
-		public static PropertyObserver Bind(this object bindable, INotifyPropertyChanged viewModel, View view)
+        public static void Bind(this object bindable, INotifyPropertyChanged viewModel, View view)
 		{
 			var context = view.Context;
-			var observer = new PropertyObserver(viewModel);
 
 			var viewGroup = view as ViewGroup;
 			if (viewGroup != null)
@@ -22,7 +22,7 @@ namespace NicCage
 
 			int id = view.Id;
 			if (id == -1)
-				return observer;
+				return;
 
 			string name = context.Resources.GetResourceName(id);
 			name = name.Split('/').Last();
@@ -32,30 +32,29 @@ namespace NicCage
 			var button = view as Button;
 			if (button != null)
 			{
-				observer.Add<bool>("Can" + name, enabled => button.Enabled = enabled);
+                Binding.Create(() => button.Enabled == ((bool)viewModel.GetProperty("Can" + name)));
 
-				button.Click += (sender, e) => observer.InvokeMethod(name);
-				return observer;
+                button.Click += (sender, e) => viewModel.Invoke(name);
+
+				return;
 			}
 
 			var editText = view as EditText;
 			if (editText != null)
 			{
-				observer.Add<string>(name, text => editText.Text = text);
-
-				editText.TextChanged += (sender, e) => viewModel.SetProperty(name, editText.Text);
-				return observer;
+                Binding.Create(() => editText.Text == viewModel.GetProperty(name));
+                return;
 			}
 
 			var textView = view as TextView;
 			if (textView != null)
 			{
-				observer.Add<string>(name, text => textView.Text = text);
-				return observer;
+                Binding.Create(() => textView.Text == viewModel.GetProperty(name));
+
+				return;
 			}
 
 			//No conventions hit
-			return observer;
 		}
 
 		private static void BindChildren(object bindable, INotifyPropertyChanged viewModel, ViewGroup parent)
